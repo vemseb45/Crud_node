@@ -1,5 +1,5 @@
-const userService = require("../services/user.services");
-const asyncHandler = require("../middlewares/asyncHandler");
+const userService = require("./user.services");
+const asyncHandler = require("../../middlewares/asyncHandler");
 
 /*
 Controller SOLO maneja HTTP
