@@ -1,9 +1,9 @@
-const { z } = require("zod");
+const Joi = require("joi");
 
-const createUserSchema = z.object({
-    name: z.string().min(3, "Nombre muy corto"),
-    email: z.string().email("Email inválido"),
-    password: z.string().min(6, "Password mínimo 6 caracteres")
+const createUserSchema = Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(6).required()
 });
 
 module.exports = {
