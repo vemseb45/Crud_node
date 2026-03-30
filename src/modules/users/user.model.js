@@ -21,12 +21,11 @@ const createUser = async (name, email,password) => {
     return result.rows[0];
 };
 
-exports.getUserByEmail = async (email) => {
+const getUserByEmail = async (email) => {
     const result = await db.query(
-        "SELECT * FROM users WHERE email=$1",
+        "SELECT * FROM users WHERE email = $1",
         [email]
     );
-
     return result.rows[0];
 };
 
@@ -45,6 +44,7 @@ const deleteUser = async (id) => {
 module.exports = {
     getAllUsers,
     getUserById,
+    getUserByEmail, 
     createUser,
     updateUser,
     deleteUser,

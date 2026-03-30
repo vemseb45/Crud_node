@@ -1,14 +1,16 @@
 module.exports = (schema) => (req, res, next) => {
 
-    const result = schema.safeParse(req.body);
+    const { error, value } = schema.validate(req.body, {
+        abortEarly: false
+    });
 
-    if (!result.success) {
+    if (error) {
         return res.status(400).json({
             success: false,
-            errors: result.error.issues.map(e => e.message)
+            errors: error.details.map(e => e.message)
         });
     }
 
-    req.body = result.data;
+    req.body = value;
     next();
 };
