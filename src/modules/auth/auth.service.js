@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const userModel = require("../users/user.model");
 const { generateToken } = require("../../utils/jwt");
 
-const JWT_SECRET = "super_secret_key";
+
 
 exports.register = async (name, email, password) => {
 
@@ -20,7 +20,8 @@ exports.register = async (name, email, password) => {
     const user = await userModel.createUser(
         name,
         email,
-        hashedPassword
+        hashedPassword,
+        "cliente"
     );
 
     return user;

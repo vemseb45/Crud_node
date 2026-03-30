@@ -15,7 +15,8 @@ exports.createUser = async (data) => {
     return await userModel.createUser(
         data.name,
         data.email,
-        hashedPassword
+        hashedPassword,
+        data.role
     );
 };
 
