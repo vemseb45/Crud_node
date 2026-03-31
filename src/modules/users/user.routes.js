@@ -10,35 +10,46 @@ const role = require("../../middlewares/role.middleware");
 const { createUserSchema } = require("./user.schema");
 
 /*
-CREATE USER
+CREATE USER (SOLO ADMIN)
 */
 router.post(
     "/",
+    auth,
+    role("admin"),
     validate(createUserSchema),
     userController.createUser
 );
 
 /*
-GET USERS
+GET USERS (SOLO ADMIN)
 */
-router.get("/", userController.getUsers);
+router.get(
+    "/", 
+    auth,
+    role("admin"),
+    userController.getUsers);
 
 /*
-GET ONE USER
+GET ONE USER (SOLO ADMIN)
 */
-router.get("/:id", userController.getUser);
+router.get(
+    "/:id",
+    auth,
+    role("admin"),
+    userController.getUser);
 
 /*
-UPDATE USER
+UPDATE USER (SOLO ADMIN)
 */
 router.put(
     "/:id",
     auth,
+    role("admin"),
     userController.updateUser
 );
 
 /*
-DELETE USER
+DELETE USER (SOLO ADMIN)
 */
 router.delete(
     "/:id",
