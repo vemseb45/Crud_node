@@ -16,7 +16,7 @@ Respuesta:`,
         stream: false
     },
     {
-        timeout: 60000 // 60 segundos
+        timeout: 600000 // 
     }
 );
     return response.data.response;
