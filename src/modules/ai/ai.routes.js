@@ -3,8 +3,14 @@ const router = express.Router();
 
 const controller = require("./ai.controller");
 const authMiddleware = require("../../middlewares/auth.middleware");
+const validate = require("../../middlewares/validate.middleware");
+const { askSchema } = require("./ai.schema");
 
-// protegemos con login
-router.post("/ask", authMiddleware, controller.ask);
+router.post(
+    "/ask",
+    authMiddleware,
+    validate(askSchema),
+    controller.ask
+);
 
 module.exports = router;

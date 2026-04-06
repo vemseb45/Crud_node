@@ -1,18 +1,13 @@
-const aiService = require("./ai.service");
+const aiGateway = require("./ai.gateway");
 
 exports.ask = async (req, res) => {
 
-    const { question } = req.body;
+    const { question, type } = req.body;
 
-    if (!question) {
-        return res.status(400).json({
-            message: "Pregunta requerida"
-        });
-    }
-
-    const response = await aiService.askAI(question);
-
-    res.json({
-        answer: response
+    const answer = await aiGateway.askAI({
+        question,
+        type
     });
+
+    res.json({ answer });
 };
